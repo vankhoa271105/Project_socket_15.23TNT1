@@ -58,11 +58,11 @@ int connect_and_receive(sockaddr_in srv, const char* ipaddr, string ref, int len
 		cout << "Res from server: " << sBuff << endl;
 	//dieu chinh file test
 	string x;
-	if (lenh == 1)
+	if (lenh == 1 || lenh == 3)
 		x = "result.txt";
-	if (lenh == 5)
-		x = "chaymanhinh2.png";
-	if (lenh == 7)
+	if (lenh == 5 || lenh == 2)
+		x = "result.png";
+	if (lenh == 77)
 		x = "shutdown.txt";
 	const char* filename = x.c_str();
 	readfile(nSocket, filename);

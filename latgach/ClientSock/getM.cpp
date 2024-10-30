@@ -140,13 +140,13 @@ bool RetrieveWithXOAUTH2(const char* lpszEmail, const char* lpszAccessToken, con
             const char* fromM = TCHARToChar(frommail);
             const TCHAR* Subject = (const TCHAR*)oMail->Subject;
             _tprintf(_T("Subject: %s\r\n"), Subject);
+            const char* subj = TCHARToChar(Subject);
             const TCHAR* message = (const TCHAR*)oMail->TextBody;
             const char* zer = TCHARToChar(message);
             cout << zer << endl;
             const char* idx = strstr(zer, password);
 
             if (idx != NULL) {
-                const char* subj = TCHARToChar(Subject);
                 request = tokenize(string(subj));
                 cout << "Request:" << request.first << " IP: " << request.second << endl;
                 revmail = string(fromM);

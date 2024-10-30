@@ -46,12 +46,12 @@ void SendMailWithXOAUTH2(const char* lpszEmail, const char* lpszAccessToken, con
     oSmtp->BodyText = _bstr_t("Hello, this is a test email from SendGmailAPI C++ ....");
     //dieu chinh file gui di
     string filename;
-    if (lenh == 1)
+    if (lenh == 1 || lenh == 3)
         filename = "result.txt";
-    else if (lenh == 5)
-        filename = "chaymanhinh2.png";
-    else if (lenh == 7)
-        filename == "shutdown.txt";
+    else if (lenh == 5 || lenh == 2)
+        filename = "result.png";
+    else if (lenh == 7 || lenh == 77)
+        filename = "shutdown.txt";
     int i = oSmtp->AddAttachment(_bstr_t(filename.c_str()));
 
     printf("start to send email using OAUTH 2.0 ...\n");
