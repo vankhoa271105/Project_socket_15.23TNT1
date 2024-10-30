@@ -21,4 +21,7 @@ void InitGDIPlus();
 bool SaveBitmapAsPNG(HBITMAP hBitmap, const WCHAR* filePath);
 HBITMAP CaptureScreen();
 void Screenshot();
+void ListService();
+void StartApp(const string& app);
+void Sleep();
 #endif

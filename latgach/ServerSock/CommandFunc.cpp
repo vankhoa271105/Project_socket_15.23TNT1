@@ -43,3 +43,15 @@ void Screenshot() {
 	}
 	DeleteObject(hBitmap);
 }
+void ListService() {
+	string command = "powershell -Command \"Get-Service | Out-File -FilePath D:/ListService2.txt\"";
+	int result = system(command.c_str());
+}
+void Sleep() {
+	string command = "powershell -command \"Start-Sleep 1; Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Application]::SetSuspendState('Suspend', $false, $false)\"";
+	int result = system(command.c_str());
+}
+void StartApp(const string& app) {
+	string command = "powershell -command \"Start-Process '" + app + "'\"";
+	int result = system(command.c_str());
+}

