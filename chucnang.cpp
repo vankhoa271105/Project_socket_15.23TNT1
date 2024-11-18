@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <windows.h>
 #include <gdiplus.h>
+#include<fstream>
 using namespace std;
 #pragma comment (lib,"Gdiplus.lib")
 void InitGDIPlus() {
@@ -42,7 +43,7 @@ void Screenshot() {
     DeleteObject(hBitmap);
 }
 void ListApp() {
-    const char* command = "powershell -Command \"Get-ItemProperty HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table –AutoSize > D:\\ListApp.txt\"";
+    const char* command = "powershell -Command \"Get-ItemProperty HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\* | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table â€“AutoSize > D:\\ListApp.txt\"";
     int result = system(command);
 }
 void ShutDown() {
@@ -62,17 +63,18 @@ void StartApp(const string& app) {
     int result = system(command.c_str());
 }
 
-void StopApp(const string& app) {
+void StopApp(const string& app, const string &file) {
+    ofstream output(file);
     string command = "taskkill /IM " + app + ".exe /F> nul 2>&1";
     int result = system(command.c_str());
     if (result != 0) {
-        cout << "Failed to start the application,check the application opened" << endl;
+        output << "Failed to start the application,check the application opened" << endl;
     }
     else {
-        cout << "The application has been stopped";
+        output << "The application has been stopped";
     }
 }
 int main() {
-    StopApp("notepad");
+    StopApp("notepad", "output.txt");
     
 }
